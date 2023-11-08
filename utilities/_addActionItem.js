@@ -1,5 +1,4 @@
 import { renderActionItem } from "./_renderActionItems.js";
-import { getData } from "./_getData.js";
 import { ActionItem } from "../classes/ActionItem.js";
 
 export const addActionItem = (value) => {

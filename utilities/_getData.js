@@ -1,3 +1,4 @@
+import { User } from "../classes/User.js";
 import { renderActionItem } from "./_renderActionItems.js";
 
 export const getData = () => {
