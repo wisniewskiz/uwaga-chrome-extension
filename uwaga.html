@@ -1,53 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="app.css" type="text/css">
-</head>
-<body>
+    <link rel="stylesheet" href="app.css" type="text/css" />
+  </head>
+  <body>
     <div class="wrapper">
-        <header>
-            <div class="header__greeting">
-                <h1>Let's get it done</h1>
-                <h1>Zachary</h1>
-            </div>
-            <div class="header__date">
-                <div class="header__date--day">23</div>
-                <div class="header__date--month">nov</div>
-            </div>
-        </header>
-        <section class="progress">
-            <div class="progress__percent">66%</div>
-            <div class="progress__indicator">
-                <div class="progress__indicator--fill"></div>
-            </div>
-            <div class="progress__title"><h2>Today's action plan</h2></div>
-        </section>
-        <section class="form">
-            <form>
-                <input type="text" class="form__taskname" id="taskname" name="taskname">
-            </form>
-            <div class="form__quickactions">
-                <div class="quickaction">Add Link</div>
-                <div class="quickaction add">+</div>
-            </div>
-        </section>
-        <section class="tasks">
-            <div class="task">
-                <div class="task__title">
-                    <div class="task__title--check"></div>
-                    <div class="task__titl--text">Finish Wireframe</div>
-                    <div class="task__title--action">
-                        <img src="/assets/add.svg" alt="icon to add notes or links to task">
-                    </div>
-                </div>
-                <div class="task__remove">
-                    <img src="/assets/delete.svg" alt="icon to delete task from list">
-                </div>
-            </div>
-        </section>
+      <header>
+        <div class="header__greeting">
+          <h1>Let's get it done</h1>
+          <h1>Zachary</h1>
+        </div>
+        <div class="header__date">
+          <div class="header__date--day">23</div>
+          <div class="header__date--month">nov</div>
+        </div>
+      </header>
+      <section class="progress">
+        <div class="progress__percent">66%</div>
+        <div class="progress__indicator">
+          <div class="progress__indicator--fill"></div>
+        </div>
+        <div class="progress__title"><h2>Today's action plan</h2></div>
+      </section>
+      <section class="form">
+        <form class="form__submit">
+          <input
+            type="text"
+            class="form__taskname"
+            id="taskname"
+            name="taskname"
+            placeholder="add an action item"
+          />
+        </form>
+        <div class="form__quickactions">
+          <div class="quickaction">Add Link</div>
+          <div class="quickaction add">+</div>
+        </div>
+      </section>
+      <section class="tasks__container"></section>
     </div>
-</body>
+    <script src="/app.js" type="module"></script>
+  </body>
 </html>
