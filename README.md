@@ -6,9 +6,10 @@
 [x] - Create software requirements document 
 [x] - Create a wireframe 
 [x] - Set up the chrome extension 
-[] - Create the front-end 
+[x] - Create the front-end 
 [] - Connect Chrome storage data
-[] - Set up browser bade as notification 
+[] - Create CRUD functionality 
+[] - Set up browser badge as notification 
 [] - Add context menu options 
 [] - Add animations 
 [] - Publish to Chrome and Edge store 

@@ -1,6 +1,7 @@
 import { renderActionItem } from "./_renderActionItems.js";
 
-export const getData = (data) => {
+export const getData = () => {
+  const data = JSON.parse(localStorage.getItem("uwaga"));
 
     if (data) {
       const actionList = data._items;

@@ -1,3 +1,5 @@
+import { deleteActionItem } from "./_deleteActionItem.js";
+
 export const renderActionItem = (name, id) => {
   let taskContainer = document.querySelector(".tasks__container");
   let task = document.createElement("div");
@@ -19,12 +21,19 @@ export const renderActionItem = (name, id) => {
   titleAction.innerHTML = `<img
   src="/assets/add.svg"
   alt="icon to add notes or links to task"
-  /><img src="/assets/delete.svg" alt="icon to delete task from list" class="deleteIcon"/>
-  `;
+  /><img src="/assets/delete.svg" alt="icon to delete task from list" class="deleteIcon"/>`;
 
   title.appendChild(titleCheck);
   title.appendChild(titleText);
   task.appendChild(title);
   task.appendChild(titleAction);
   taskContainer.appendChild(task);
+
+  const deleteIcon = titleAction.childNodes[1];
+  deleteIcon.addEventListener("click", (e) => {
+    const target = e.target.parentNode.parentNode;
+    deleteActionItem(target.id);
+    target.remove();
+  })
+  
 };
