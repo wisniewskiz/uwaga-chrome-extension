@@ -1,7 +1,7 @@
 import { deleteActionItem } from "./_deleteActionItem.js";
 import { completeAction } from "./_completeActionItem.js";
 
-export const renderActionItem = (name, id) => {
+export const renderActionItem = (name, id, isCompleted) => {
   let taskContainer = document.querySelector(".tasks__container");
   let task = document.createElement("div");
   task.classList.add("task");
@@ -12,7 +12,6 @@ export const renderActionItem = (name, id) => {
 
   let titleCheck = document.createElement("input");
   titleCheck.setAttribute("type", "checkbox");
-  // titleCheck.innerHTML = `<img src="/assets/checkmark.svg" class="hidden"/>`;
   titleCheck.classList.add("task__title--check");
 
   let titleText = document.createElement("div");
@@ -26,6 +25,12 @@ export const renderActionItem = (name, id) => {
   alt="icon to add notes or links to task"
   /><img src="/assets/delete.svg" alt="icon to delete task from list" class="deleteIcon"/>`;
 
+  if (isCompleted == true) {
+    task.classList.add("complete");
+    console.log(name, isCompleted);
+    titleCheck.checked = true;
+  }
+  
   title.appendChild(titleCheck);
   title.appendChild(titleText);
   task.appendChild(title);
@@ -42,7 +47,6 @@ export const renderActionItem = (name, id) => {
   titleCheck.addEventListener("click", (e) => {
     const checked = e.target.checked;
     const target = e.target.parentNode.parentNode;
-    // console.log(checked, target.id);
     completeAction(target.id, checked);
     target.classList.toggle("complete");
   });

@@ -7,8 +7,12 @@
 [x] - Create a wireframe 
 [x] - Set up the chrome extension 
 [x] - Create the front-end 
-[] - Connect Chrome storage data
+[x] - Connect Chrome storage data
 [] - Create CRUD functionality 
+    [x] - Create
+    [x] - Read
+    [] - Update
+    [] - Delete
 [] - Set up browser badge as notification 
 [] - Add context menu options 
 [] - Add animations 

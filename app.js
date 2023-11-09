@@ -1,7 +1,6 @@
 import { getData } from "./utilities/_getData.js";
 import { addActionItem } from "./utilities/_addActionItem.js";
-import { deleteActionItem } from "./utilities/_deleteActionItem.js";
-
+import { updateProgress } from "./utilities/_updateProgress.js"
 
 getData();
 
@@ -15,4 +14,4 @@ addItem.addEventListener("submit", (e) => {
   addItem.elements.namedItem("taskname").value = "";
 });
 
-// deleteActionItem();
+updateProgress();
