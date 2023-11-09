@@ -32,6 +32,10 @@ body {
   background-color: var(--light-green) !important;
 }
 
+.hidden {
+  display: none !important;
+}
+
 /*------------*/
 /* TYPOGRAPHY */
 /*------------*/
@@ -242,9 +246,31 @@ header {
   }
 }
 
-/* ADD NOTES */
-.task__addNote {
+/* NOTES CARDS */
+.task__note--wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
+
+.task__note--card {
+  display: flex;
+  padding: 1rem 0.5rem;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-radius: 0.5rem;
+  color: var(--light);
+  background-color: var(--dark);
+  /* TYPOGRAPHY */
+  font-family: Roboto;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 91.8%;
+  white-space: pre;
+}
+
+/* ADD NOTES */
 
 #addnote {
   resize: none;

@@ -43,9 +43,13 @@ export const renderActionItem = (name, id, isCompleted, notes) => {
   titleDelete.innerHTML = `<img src="/assets/delete.svg" alt="icon to delete task from list" class="deleteIcon"/>`;
 
   if (isCompleted == true) {
-    task.classList.add("complete");
+    taskWrapper.classList.add("complete");
     titleCheck.checked = true;
   }
+
+  let noteWrapper = document.createElement("div");
+  noteWrapper.classList.add("task__note--wrapper", "hidden");
+
 
   titleGroup.appendChild(titleCheck);
   titleGroup.appendChild(titleText);
@@ -55,26 +59,37 @@ export const renderActionItem = (name, id, isCompleted, notes) => {
   titleAction.appendChild(titleDelete);
   taskWrapper.appendChild(task);
   taskContainer.appendChild(taskWrapper);
+  taskWrapper.appendChild(noteWrapper);
+  
+  if(notes) {
+    for(let note of notes) {
+      let noteCard = document.createElement("div");
+      noteCard.classList.add("task__note--card");
+      noteCard.textContent = note.text;
+      noteCard.setAttribute("id", note.id)
+      noteWrapper.appendChild(noteCard);
+    }
+  } 
 
-  // console.log(notes);
 
   titleNotes.addEventListener("click", (e) => {
     const targetIcon = e.target.parentNode;
-    const targetSibling = e.target.parentNode.parentNode.parentNode;
+    const targetSibling = e.target.parentNode.parentNode.parentNode.parentNode;
     const targetId = e.target.parentNode.parentNode.parentNode.id;
     addNotes(targetIcon, targetSibling, targetId);
   });
 
   titleDelete.addEventListener("click", (e) => {
     const target = e.target.parentNode.parentNode.parentNode;
+    const targetWrapper = target.parentNode;
     deleteActionItem(target.id);
-    target.remove();
+    targetWrapper.remove();
   });
 
   titleCheck.addEventListener("click", (e) => {
     const checked = e.target.checked;
     const target = e.target.parentNode.parentNode;
     completeAction(target.id, checked);
-    target.classList.toggle("complete");
+    target.parentNode.classList.toggle("complete");
   });
 };

@@ -12,7 +12,7 @@
     [x] - Create
     [x] - Read
     [] - Update
-    [] - Delete
+    [x] - Delete
 [] - Set up browser badge as notification 
 [] - Add context menu options 
 [] - Add animations 
