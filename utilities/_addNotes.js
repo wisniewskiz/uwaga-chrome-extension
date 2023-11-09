@@ -1,4 +1,7 @@
 import { changeNoteInput } from "./_changeNoteInput.js";
+import { addNoteToDatabase } from "./_addNoteToDatabase.js";
+
+
 
 export const addNotes = (targetIcon, targetSibling, targetId) => {
   let classList = targetIcon.classList;
@@ -13,6 +16,7 @@ export const addNotes = (targetIcon, targetSibling, targetId) => {
 
   if (!classList.contains("see-less")) {
     targetSibling.insertAdjacentHTML("afterend", addNoteModule);
+    addNoteToDatabase(targetId);
     targetIcon.classList.add("see-less");
   } else if (classList.contains("add-show") && classList.contains("see-less")) {
     const noteModule = document.querySelector(".task__addNote");
@@ -21,4 +25,5 @@ export const addNotes = (targetIcon, targetSibling, targetId) => {
   } else if (classList.contains("has-show") && classList.contains("see-less")) {
     console.log("test 3");
   }
+
 };
