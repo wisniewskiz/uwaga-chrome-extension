@@ -32,7 +32,6 @@ body {
   background-color: var(--light-green) !important;
 }
 
-
 /*------------*/
 /* TYPOGRAPHY */
 /*------------*/
@@ -148,6 +147,8 @@ header {
 /* COMPONENTS */
 /*------------*/
 
+/* PROGRESS BAR */
+
 .progress__indicator {
   height: 1.125rem;
   border-radius: 0.5rem;
@@ -162,6 +163,8 @@ header {
   border-radius: 0.5rem;
   background: var(--light-green);
 }
+
+/* TASK FORM */
 
 .form__taskname {
   padding: 0.8125rem 1rem;
@@ -187,13 +190,21 @@ header {
   line-height: 91.8%; /* 0.80325rem */
 }
 
-.task {
+/* TASK LIST */
+.task__wrapper {
   display: flex;
-  padding: 0.5rem 1rem;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
   border-radius: 0.5rem;
   background: #f2f2f2;
+  padding: 0.5rem 1rem 1rem;
+  gap: 1rem;
+}
+.task {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: flex-end;
+
   /* COMPONENT TYPOGRAPHY */
   color: var(--dark);
   font-family: Roboto;
@@ -229,4 +240,22 @@ header {
   & img {
     cursor: pointer;
   }
+}
+
+/* ADD NOTES */
+.task__addNote {
+}
+
+#addnote {
+  resize: none;
+  width: 100%;
+  height: 5.125rem;
+  display: flex;
+  padding: 0.9375rem 1.125rem;
+  align-items: flex-start;
+  gap: 0.5rem;
+  align-self: stretch;
+  border-radius: 0.5rem;
+  background: var(--input);
+  border: none;
 }

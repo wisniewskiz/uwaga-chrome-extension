@@ -1,14 +1,17 @@
+import { addNotes } from "./_addNotes.js";
 import { deleteActionItem } from "./_deleteActionItem.js";
 import { completeAction } from "./_completeActionItem.js";
 
-export const renderActionItem = (name, id, isCompleted) => {
+export const renderActionItem = (name, id, isCompleted, notes) => {
   let taskContainer = document.querySelector(".tasks__container");
+  let taskWrapper = document.createElement("div");
+  taskWrapper.classList.add("task__wrapper");
   let task = document.createElement("div");
   task.classList.add("task");
   task.setAttribute("id", id);
 
-  let title = document.createElement("div");
-  title.classList.add("task__title");
+  let titleGroup = document.createElement("div");
+  titleGroup.classList.add("task__title");
 
   let titleCheck = document.createElement("input");
   titleCheck.setAttribute("type", "checkbox");
@@ -20,26 +23,50 @@ export const renderActionItem = (name, id, isCompleted) => {
 
   let titleAction = document.createElement("div");
   titleAction.classList.add("task__title--action");
-  titleAction.innerHTML = `<img
-  src="/assets/add.svg"
-  alt="icon to add notes or links to task"
-  /><img src="/assets/delete.svg" alt="icon to delete task from list" class="deleteIcon"/>`;
+  let titleNotes = document.createElement("div");
+  titleNotes.classList.add("task__title--action", "notes");
+  if (!notes || notes.length == 0) {
+    titleNotes.innerHTML = `<img
+    src="/assets/add.svg"
+    alt="icon to add notes or links to task"
+    />`;
+    titleNotes.classList.add('add-show');
+  } else {
+    titleNotes.innerHTML = `<img
+    src="/assets/see-more.svg"
+    alt="icon to add notes or links to task"
+    />`;
+    titleNotes.classList.add('has-show')
+  }
+  let titleDelete = document.createElement("div");
+  titleDelete.classList.add("task__title--action", "deleteIcon");
+  titleDelete.innerHTML = `<img src="/assets/delete.svg" alt="icon to delete task from list" class="deleteIcon"/>`;
 
   if (isCompleted == true) {
     task.classList.add("complete");
-    console.log(name, isCompleted);
     titleCheck.checked = true;
   }
-  
-  title.appendChild(titleCheck);
-  title.appendChild(titleText);
-  task.appendChild(title);
-  task.appendChild(titleAction);
-  taskContainer.appendChild(task);
 
-  const deleteIcon = titleAction.childNodes[1];
-  deleteIcon.addEventListener("click", (e) => {
-    const target = e.target.parentNode.parentNode;
+  titleGroup.appendChild(titleCheck);
+  titleGroup.appendChild(titleText);
+  task.appendChild(titleGroup);
+  task.appendChild(titleAction);
+  titleAction.appendChild(titleNotes);
+  titleAction.appendChild(titleDelete);
+  taskWrapper.appendChild(task);
+  taskContainer.appendChild(taskWrapper);
+
+  // console.log(notes);
+
+  titleNotes.addEventListener("click", (e) => {
+    const targetIcon = e.target.parentNode;
+    const targetSibling = e.target.parentNode.parentNode.parentNode;
+    const targetId = e.target.parentNode.parentNode.parentNode.id;
+    addNotes(targetIcon, targetSibling, targetId);
+  });
+
+  titleDelete.addEventListener("click", (e) => {
+    const target = e.target.parentNode.parentNode.parentNode;
     deleteActionItem(target.id);
     target.remove();
   });
