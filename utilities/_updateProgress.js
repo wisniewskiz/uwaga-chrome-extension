@@ -1,3 +1,5 @@
+import { setBrowserBadge } from "./_setBrowserBadge.js";
+
 const actionList = document.querySelector(".tasks__container");
 const progressPercent = document.querySelector(".progress__percent");
 const progressFill = document.querySelector(".progress__indicator--fill");
@@ -20,6 +22,7 @@ export const updateProgress = () => {
         progressPercent.innerText = `${percentComplete}%`;
         progressFill.style.width = `${percentComplete}%`;
     }
+    setBrowserBadge();
   });
 
   observer.observe(actionList, {

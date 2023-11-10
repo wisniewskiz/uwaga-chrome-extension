@@ -13,8 +13,8 @@
     [x] - Read
     [x] - Update
     [x] - Delete
-[] - Add Animations
+[x] - Add Animations
+[] - Create a branch to refactor javascript to updated classes with methods and simplify code 
 [] - Set up browser badge as notification 
 [] - Add context menu options 
-[] - Add animations 
 [] - Publish to Chrome and Edge store 
