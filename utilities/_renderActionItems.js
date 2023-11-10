@@ -20,10 +20,9 @@ export const renderActionItem = (name, id, isCompleted, notes, isWebsite, url, f
   let titleText = document.createElement("div");
   titleText.classList.add("task__title--text");
   if (isWebsite) {
-    console.log(favicon, name);
-    titleText.innerHTML =`<img src="${favicon}" class="task__title--favicon"><a href="${url}">${name}</a>`
+    titleText.innerHTML =`<img src="${favicon}" class="task__title--favicon"><a href="${url}" target="_blank">${name}</a>`
   } else {
-    titleText.textContent = name;
+    titleText.innerHTML = `<p class="action__text">${name}</p>`;
   }
 
   let titleAction = document.createElement("div");

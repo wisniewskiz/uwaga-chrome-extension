@@ -94,6 +94,10 @@ input {
   line-height: 91.8%; /* 0.918rem */
 }
 
+.action__text {
+  padding-left: 24px;
+}
+
 /*------------*/
 /* LAYOUT     */
 /*------------*/
