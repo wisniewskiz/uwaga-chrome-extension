@@ -1,6 +1,8 @@
 import { Note } from "../classes/Note.js";
 
-export const addNoteToDatabase = (targetId) => {
+export const addNoteToDatabase = (targetId, targetIcon) => {
+  targetIcon.classList.remove('add-show');
+  targetIcon.classList.add('has-show');
   const noteForm = document.querySelector(".note__submit");
   const data = JSON.parse(localStorage.getItem("uwaga"));
   const notesWrapper =
@@ -8,8 +10,6 @@ export const addNoteToDatabase = (targetId) => {
   const textArea = document.getElementById("addnote");
   const notesList = notesWrapper.childNodes;
   let toRender = false;
-
-  noteForm.addEventListener("submit", (e) => {});
 
   textArea.addEventListener("keydown", (e) => {
     if (e.key == "Enter" && !e.shiftKey) {

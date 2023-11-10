@@ -8,10 +8,14 @@
   </head>
   <body>
     <div class="wrapper">
+      <dialog class="modal">
+        <p id="modal__header">What should I call you?</p>
+        <form method="dialog" id="form__username"><input type="text" name="name" id="modal__input" placeholder="Type name and press enter"></form>
+      </dialog>
       <header>
         <div class="header__greeting">
           <h1>Let's get it done</h1>
-          <h1>Zachary</h1>
+          <h1 id="name"></h1>
         </div>
         <div class="header__date">
           <div class="header__date--day"></div>

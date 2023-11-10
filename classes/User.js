@@ -5,11 +5,11 @@ export class User {
   }
 
   get name() {
-    return this.name;
+    return this._name;
   }
 
   get items() {
-    return this.items;
+    return this._items;
   }
 
   set name(newName) {

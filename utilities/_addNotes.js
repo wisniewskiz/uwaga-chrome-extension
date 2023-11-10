@@ -10,12 +10,12 @@ export const addNotes = (targetIcon, targetSibling, targetId) => {
     </form>
     </div>`;
 
-  changeNoteInput(targetIcon);
+    changeNoteInput(targetIcon);
 
   if (!classList.contains("see-less")) {
     notesWrapper.classList.toggle("hidden");
     targetSibling.insertAdjacentHTML("beforeend", addNoteModule);
-    addNoteToDatabase(targetId);
+    addNoteToDatabase(targetId, targetIcon);
     targetIcon.classList.add("see-less");
   } else if (
     classList.contains("add-show") ||
@@ -26,4 +26,5 @@ export const addNotes = (targetIcon, targetSibling, targetId) => {
     noteModule.remove();
     targetIcon.classList.remove("see-less");
   }
+  
 };

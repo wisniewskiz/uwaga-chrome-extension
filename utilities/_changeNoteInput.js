@@ -1,5 +1,5 @@
 export const changeNoteInput = (actionWrapper) => {
-  const observer = new MutationObserver((mutations) => {
+  const observer = new MutationObserver(() => {
     if(actionWrapper.classList.contains("add-show") && !actionWrapper.classList.contains("see-less")) {
         actionWrapper.innerHTML=`<img
         src="/assets/add.svg"
