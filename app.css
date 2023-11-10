@@ -21,7 +21,6 @@ body {
   width: 420px;
   height: 560px;
   background-color: #fff;
-  border: 1px solid coral;
 }
 
 /*------------*/
@@ -205,9 +204,8 @@ header {
 }
 .task {
   display: flex;
-
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
 
   /* COMPONENT TYPOGRAPHY */
   color: var(--dark);
@@ -222,19 +220,24 @@ header {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  flex-shrink: 0;
+  flex-shrink: 1 0 0;
+  align-self: stretch;
 }
 
 .task__title--check {
   width: 1rem;
   height: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
   border-radius: 0.25rem;
   border: 1px solid #1b1e23;
   cursor: pointer;
+}
+
+.task__title--text {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-right: 0.5rem;
+  flex: 1 0 0;
 }
 
 .task__title--action {
@@ -284,4 +287,9 @@ header {
   border-radius: 0.5rem;
   background: var(--input);
   border: none;
+}
+
+.task__title--favicon {
+  height: 1rem;
+  width: auto;
 }

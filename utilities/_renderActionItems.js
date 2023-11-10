@@ -2,7 +2,7 @@ import { addNotes } from "./_addNotes.js";
 import { deleteActionItem } from "./_deleteActionItem.js";
 import { completeAction } from "./_completeActionItem.js";
 
-export const renderActionItem = (name, id, isCompleted, notes) => {
+export const renderActionItem = (name, id, isCompleted, notes, isWebsite, url, favicon ) => {
   let taskContainer = document.querySelector(".tasks__container");
   let taskWrapper = document.createElement("div");
   taskWrapper.classList.add("task__wrapper");
@@ -19,7 +19,12 @@ export const renderActionItem = (name, id, isCompleted, notes) => {
 
   let titleText = document.createElement("div");
   titleText.classList.add("task__title--text");
-  titleText.textContent = name;
+  if (isWebsite) {
+    console.log(favicon, name);
+    titleText.innerHTML =`<img src="${favicon}" class="task__title--favicon"><a href="${url}">${name}</a>`
+  } else {
+    titleText.textContent = name;
+  }
 
   let titleAction = document.createElement("div");
   titleAction.classList.add("task__title--action");
@@ -70,6 +75,8 @@ export const renderActionItem = (name, id, isCompleted, notes) => {
       noteWrapper.appendChild(noteCard);
     }
   } 
+
+  
 
 
   titleNotes.addEventListener("click", (e) => {

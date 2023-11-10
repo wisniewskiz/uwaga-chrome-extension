@@ -7,5 +7,5 @@ export const addActionItem = (value) => {
   data._items.push(newItem);
   const update = JSON.stringify(data);
   localStorage.setItem("uwaga", update);
-  renderActionItem(newItem.text, newItem.id)
+  renderActionItem(newItem.text, newItem.id);
 };

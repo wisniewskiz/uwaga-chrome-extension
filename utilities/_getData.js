@@ -7,7 +7,7 @@ export const getData = () => {
     if (data) {
       const actionList = data._items;
       actionList.map((action) => {
-        renderActionItem(action.text, action.id, action.isCompleted, action.notes);
+        renderActionItem(action.text, action.id, action.isCompleted, action.notes, action.isWebsite, action.url, action.favicon);
         updateProgress();
       });
     } else {

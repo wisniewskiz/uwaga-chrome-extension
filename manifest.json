@@ -3,6 +3,9 @@
     "name": "Uwaga Task and Action Planner",
     "description": "Organize your day and your thoughts",
     "version": "1.0",
+    "permissions": [
+      "tabs"
+    ],
     "action": {
       "default_popup": "uwaga.html"
     }
