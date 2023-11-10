@@ -2,10 +2,19 @@ import { addNotes } from "./_addNotes.js";
 import { deleteActionItem } from "./_deleteActionItem.js";
 import { completeAction } from "./_completeActionItem.js";
 
-export const renderActionItem = (name, id, isCompleted, notes, isWebsite, url, favicon ) => {
+export const renderActionItem = (
+  name,
+  id,
+  isCompleted,
+  notes,
+  isWebsite,
+  url,
+  favicon
+) => {
   let taskContainer = document.querySelector(".tasks__container");
   let taskWrapper = document.createElement("div");
   taskWrapper.classList.add("task__wrapper");
+
   let task = document.createElement("div");
   task.classList.add("task");
   task.setAttribute("id", id);
@@ -20,7 +29,7 @@ export const renderActionItem = (name, id, isCompleted, notes, isWebsite, url, f
   let titleText = document.createElement("div");
   titleText.classList.add("task__title--text");
   if (isWebsite) {
-    titleText.innerHTML =`<img src="${favicon}" class="task__title--favicon"><a href="${url}" target="_blank">${name}</a>`
+    titleText.innerHTML = `<img src="${favicon}" class="task__title--favicon"><a href="${url}" target="_blank">${name}</a>`;
   } else {
     titleText.innerHTML = `<p class="action__text">${name}</p>`;
   }
@@ -34,13 +43,13 @@ export const renderActionItem = (name, id, isCompleted, notes, isWebsite, url, f
     src="/assets/add.svg"
     alt="icon to add notes or links to task"
     />`;
-    titleNotes.classList.add('add-show');
+    titleNotes.classList.add("add-show");
   } else {
     titleNotes.innerHTML = `<img
     src="/assets/see-more.svg"
     alt="icon to add notes or links to task"
     />`;
-    titleNotes.classList.add('has-show')
+    titleNotes.classList.add("has-show");
   }
   let titleDelete = document.createElement("div");
   titleDelete.classList.add("task__title--action", "deleteIcon");
@@ -51,9 +60,10 @@ export const renderActionItem = (name, id, isCompleted, notes, isWebsite, url, f
     titleCheck.checked = true;
   }
 
+  let expandableNotes = document.createElement("div");
+  expandableNotes.classList.add("expandable", "hidden");
   let noteWrapper = document.createElement("div");
-  noteWrapper.classList.add("task__note--wrapper", "hidden");
-
+  noteWrapper.classList.add("task__note--wrapper");
 
   titleGroup.appendChild(titleCheck);
   titleGroup.appendChild(titleText);
@@ -63,24 +73,28 @@ export const renderActionItem = (name, id, isCompleted, notes, isWebsite, url, f
   titleAction.appendChild(titleDelete);
   taskWrapper.appendChild(task);
   taskContainer.appendChild(taskWrapper);
-  taskWrapper.appendChild(noteWrapper);
-  
-  if(notes) {
-    for(let note of notes) {
+  taskWrapper.appendChild(expandableNotes)
+  expandableNotes.appendChild(noteWrapper);
+
+  if (notes) {
+    for (let note of notes) {
       let noteCard = document.createElement("div");
       noteCard.classList.add("task__note--card");
       noteCard.textContent = note.text;
-      noteCard.setAttribute("id", note.id)
+      noteCard.setAttribute("id", note.id);
       noteWrapper.appendChild(noteCard);
     }
-  } 
+  }
 
-  
-
+  const animateDropIn = [
+    { transform: `translateY(-${taskWrapper.offsetHeight}px)`, opacity: '0' },
+    { transform: `translateY(0px)`, opacity: '1' },
+  ];
+  taskWrapper.animate(animateDropIn, { duration: 250 });
 
   titleNotes.addEventListener("click", (e) => {
+    const targetSibling = e.target.parentNode.parentNode.parentNode.nextElementSibling.childNodes[0];
     const targetIcon = e.target.parentNode;
-    const targetSibling = e.target.parentNode.parentNode.parentNode.parentNode;
     const targetId = e.target.parentNode.parentNode.parentNode.id;
     addNotes(targetIcon, targetSibling, targetId);
   });
@@ -88,8 +102,7 @@ export const renderActionItem = (name, id, isCompleted, notes, isWebsite, url, f
   titleDelete.addEventListener("click", (e) => {
     const target = e.target.parentNode.parentNode.parentNode;
     const targetWrapper = target.parentNode;
-    deleteActionItem(target.id);
-    targetWrapper.remove();
+    deleteActionItem(target.id, targetWrapper);
   });
 
   titleCheck.addEventListener("click", (e) => {

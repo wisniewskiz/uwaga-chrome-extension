@@ -15,9 +15,5 @@ export const getData = () => {
       });
     } else {
       changeUserName();
-      // let user = new User("user");
-      // name.textContent = user.name;
-      // user = JSON.stringify(user);
-      // localStorage.setItem("uwaga", user);
     }
   };

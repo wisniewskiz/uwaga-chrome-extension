@@ -1,12 +1,9 @@
 import { Note } from "../classes/Note.js";
 
-export const addNoteToDatabase = (targetId, targetIcon) => {
-  targetIcon.classList.remove('add-show');
-  targetIcon.classList.add('has-show');
+export const addNoteToDatabase = (targetId, targetIcon, wrapper) => {
   const noteForm = document.querySelector(".note__submit");
   const data = JSON.parse(localStorage.getItem("uwaga"));
-  const notesWrapper =
-    document.getElementById(targetId).parentElement.childNodes[1];
+  const notesWrapper = wrapper;
   const textArea = document.getElementById("addnote");
   const notesList = notesWrapper.childNodes;
   let toRender = false;
@@ -34,6 +31,8 @@ export const addNoteToDatabase = (targetId, targetIcon) => {
           }
         }
       });
+      targetIcon.classList.remove('add-show');
+      targetIcon.classList.add('has-show');
       const update = JSON.stringify(data);
       localStorage.setItem("uwaga", update);
       textArea.value = "";

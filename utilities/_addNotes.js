@@ -2,7 +2,9 @@ import { changeNoteInput } from "./_changeNoteInput.js";
 import { addNoteToDatabase } from "./_addNoteToDatabase.js";
 
 export const addNotes = (targetIcon, targetSibling, targetId) => {
-  const notesWrapper = targetSibling.childNodes[1];
+  const taskWrapper = document.querySelector('.task__wrapper');
+  console.log(taskWrapper);
+  const notesExpandable = targetSibling.parentNode;
   let classList = targetIcon.classList;
   const addNoteModule = `<div class="task__addNote">
     <form class="note__submit">
@@ -10,21 +12,21 @@ export const addNotes = (targetIcon, targetSibling, targetId) => {
     </form>
     </div>`;
 
-    changeNoteInput(targetIcon);
+  changeNoteInput(targetIcon);
 
   if (!classList.contains("see-less")) {
-    notesWrapper.classList.toggle("hidden");
-    targetSibling.insertAdjacentHTML("beforeend", addNoteModule);
-    addNoteToDatabase(targetId, targetIcon);
+    notesExpandable.classList.toggle("hidden");
+    targetSibling.insertAdjacentHTML("afterend", addNoteModule);
+    addNoteToDatabase(targetId, targetIcon, targetSibling);
     targetIcon.classList.add("see-less");
+
   } else if (
     classList.contains("add-show") ||
     (classList.contains("has-show") && classList.contains("see-less"))
   ) {
-    notesWrapper.classList.toggle("hidden");
+    notesExpandable.classList.toggle("hidden");
     const noteModule = document.querySelector(".task__addNote");
     noteModule.remove();
     targetIcon.classList.remove("see-less");
   }
-  
 };

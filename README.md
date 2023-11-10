@@ -8,11 +8,12 @@
 [x] - Set up the chrome extension 
 [x] - Create the front-end 
 [x] - Connect Chrome storage data
-[] - Create CRUD functionality 
+[x] - Create CRUD functionality 
     [x] - Create
     [x] - Read
-    [] - Update
+    [x] - Update
     [x] - Delete
+[] - Add Animations
 [] - Set up browser badge as notification 
 [] - Add context menu options 
 [] - Add animations 
