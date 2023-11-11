@@ -14,7 +14,6 @@ export class ActionItem {
   add = (text) => {
     const newActionItem = new ActionItem(text);
     const data = JSON.parse(localStorage.getItem("uwaga"));
-    console.log(newActionItem)
     data.items.push(newActionItem);
     console.log(data.items);
     const dataString = JSON.stringify(data);

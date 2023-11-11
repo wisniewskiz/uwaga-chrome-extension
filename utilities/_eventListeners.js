@@ -1,7 +1,6 @@
 import { ActionItem } from "../classes/ActionItem.js";
 import { changeUserName } from "./_changeUsername.js";
 export const eventListeners = () => {
-
   let addItem = document.querySelector(".form__submit");
   addItem.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -23,4 +22,4 @@ export const eventListeners = () => {
   name.addEventListener("click", (e) => {
     changeUserName();
   });
-};
+}
