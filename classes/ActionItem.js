@@ -43,16 +43,15 @@ export class ActionItem {
     }, 450);
   };
 
-  complete = (id,checked) => {
+  complete = (id) => {
     console.log(id);
     const data = JSON.parse(localStorage.getItem("uwaga"));
-
     data.items = data.items.map((action) => {
       console.log(action);
       if (action.id == id) {
         action.isCompleted = !action.isCompleted;
       }
-      const dataString = JSON.stringify(this.data);
+      const dataString = JSON.stringify(data);
       localStorage.setItem("uwaga", dataString);
     });
   };
