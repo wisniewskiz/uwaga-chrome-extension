@@ -14,7 +14,9 @@ export class ActionItem {
   add = (text) => {
     const newActionItem = new ActionItem(text);
     const data = JSON.parse(localStorage.getItem("uwaga"));
+    console.log(newActionItem)
     data.items.push(newActionItem);
+    console.log(data.items);
     const dataString = JSON.stringify(data);
     localStorage.setItem("uwaga", dataString);
     this.render(newActionItem);
@@ -45,6 +47,7 @@ export class ActionItem {
 
   complete = (id) => {;
     const data = JSON.parse(localStorage.getItem("uwaga"));
+    console.log(data);
     data.items = data.items.map((action) => {
       if (action.id == id) {
         action.isCompleted = !action.isCompleted;
@@ -55,17 +58,17 @@ export class ActionItem {
   };
 
   linkFromTab = async (url, title, favicon) => {
-    let newItem = new ActionItem(title);
-    newItem.url = url;
-    newItem.favicon = favicon;
-    newItem.isWebsite = true;
-    newItem.isCompleted = false;
+    const newActionItem = new ActionItem(title);
+    newActionItem.favicon = favicon;
+    newActionItem.url = url;
+    newActionItem.isWebsite = true;
+    newActionItem.isCompleted = false;
     const data = JSON.parse(localStorage.getItem("uwaga"));
-
-    data.items.push(newItem);
-    const dataString = JSON.stringify(this.data);
+    data.items.push(newActionItem);
+    console.log(data.items);
+    const dataString = JSON.stringify(data);
     localStorage.setItem("uwaga", dataString);
-    renderActionItem(newItem);
+    this.render(newActionItem);
   };
 
   render = (actionItem) => {
