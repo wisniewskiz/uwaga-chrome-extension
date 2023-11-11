@@ -5,7 +5,7 @@ const progressFill = document.querySelector(".progress__indicator--fill");
 export const updateProgress = () => {
   const observer = new MutationObserver((mutations) => {
     let data = JSON.parse(localStorage.getItem("uwaga"));
-    let actionItems = data._items;
+    let actionItems = data.items;
     const totalItems = actionItems.length;
     let completedItems = 0;
     actionItems.map((item) => {
