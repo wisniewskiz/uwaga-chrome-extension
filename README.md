@@ -14,7 +14,8 @@
     [x] - Update
     [x] - Delete
 [x] - Add Animations
-[] - Create a branch to refactor javascript to updated classes with methods and simplify code 
-[] - Set up browser badge as notification 
+[x] - Create a branch to refactor javascript to updated classes with methods and simplify code 
+[x] - Set up browser badge as notification 
 [] - Add context menu options 
+[] - Update styles to match logo
 [] - Publish to Chrome and Edge store 
