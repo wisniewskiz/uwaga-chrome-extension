@@ -1,27 +1,31 @@
-import { Note } from './Note.js'
+import { Note } from "./Note.js";
 
 export class ActionItem {
   constructor(_text) {
-    this.text = _text,
-    this.id = crypto.randomUUID(),
-    this.isCompleted = false,
-    this.added = new Date().toString();
-    this.notes = [],
-    this.isWebsite = null,
-    this.url = null, 
-    this.favicon = null,
-    this.data = JSON.parse(localStorage.getItem("uwaga"))
+    (this.text = _text),
+      (this.id = crypto.randomUUID()),
+      (this.isCompleted = false),
+      (this.added = new Date().toString());
+    (this.notes = []),
+      (this.isWebsite = null),
+      (this.url = null),
+      (this.favicon = null);
   }
   add = (text) => {
-    const actionItem = new ActionItem(text);
-    this.data.items.push(actionItem);
-    localStorage.setItem("uwaga", JSON.stringify(this.data));
-    this.render(actionItem);
+    const newActionItem = new ActionItem(text);
+    const data = JSON.parse(localStorage.getItem("uwaga"));
+    data.items.push(newActionItem);
+    const dataString = JSON.stringify(data);
+    localStorage.setItem("uwaga", dataString);
+    this.render(newActionItem);
   };
 
   delete = (id, targetWrapper) => {
-    this.data.items = this.data.items.filter((action) => action.id !== id);
-    localStorage.setItem("uwaga", JSON.stringify(this.data));
+    const data = JSON.parse(localStorage.getItem("uwaga"));
+
+    data.items = data.items.filter((action) => action.id !== id);
+    const dataString = JSON.stringify(data);
+    localStorage.setItem("uwaga", dataString);
     targetWrapper.animate(
       [
         { transform: "translateX(0px)", opacity: "1" },
@@ -39,27 +43,36 @@ export class ActionItem {
     }, 450);
   };
 
-  complete = (id) => {
-    this.data.items = this.data.items.map((action) => {
+  complete = (id,checked) => {
+    console.log(id);
+    const data = JSON.parse(localStorage.getItem("uwaga"));
+
+    data.items = data.items.map((action) => {
+      console.log(action);
       if (action.id == id) {
         action.isCompleted = !action.isCompleted;
       }
-      localStorage.setItem("uwaga", JSON.stringify(this.data));
+      const dataString = JSON.stringify(this.data);
+      localStorage.setItem("uwaga", dataString);
     });
   };
 
   linkFromTab = async (url, title, favicon) => {
-  let newItem = new ActionItem(title);
-  newItem.url = url;
-  newItem.favicon = favicon;
-  newItem.isWebsite = true;
-  newItem.isCompleted = false;
-  this.data.items.push(newItem);
-  localStorage.setItem("uwaga", JSON.stringify(this.data));
-  renderActionItem(newItem.text, newItem.id, newItem.isCompleted, newItem.notes, newItem.isWebsite, newItem.url, newItem.favicon);
-  }
+    let newItem = new ActionItem(title);
+    newItem.url = url;
+    newItem.favicon = favicon;
+    newItem.isWebsite = true;
+    newItem.isCompleted = false;
+    const data = JSON.parse(localStorage.getItem("uwaga"));
+
+    data.items.push(newItem);
+    const dataString = JSON.stringify(this.data);
+    localStorage.setItem("uwaga", dataString);
+    renderActionItem(newItem);
+  };
 
   render = (actionItem) => {
+    console.log(actionItem.text);
     let taskContainer = document.querySelector(".tasks__container");
     let taskWrapper = document.createElement("div");
     taskWrapper.classList.add("task__wrapper");
@@ -78,9 +91,9 @@ export class ActionItem {
     let titleText = document.createElement("div");
     titleText.classList.add("task__title--text");
     if (actionItem.isWebsite) {
-      titleText.innerHTML = `<img src="${favicon}" class="task__title--favicon"><a href="${url}" target="_blank">${name}</a>`;
+      titleText.innerHTML = `<img src="${actionItem.favicon}" class="task__title--favicon"><a href="${actionItem.url}" target="_blank">${actionItem.text}</a>`;
     } else {
-      titleText.innerHTML = `<p class="action__text">${name}</p>`;
+      titleText.innerHTML = `<p class="action__text">${actionItem.text}</p>`;
     }
 
     let titleAction = document.createElement("div");
@@ -142,7 +155,7 @@ export class ActionItem {
     taskWrapper.animate(animateDropIn, { duration: 250 });
 
     titleNotes.addEventListener("click", (e) => {
-      const note = new Note()
+      const note = new Note();
       const targetSibling =
         e.target.parentNode.parentNode.parentNode.nextElementSibling
           .childNodes[0];
@@ -159,6 +172,7 @@ export class ActionItem {
 
     titleCheck.addEventListener("click", (e) => {
       const checked = e.target.checked;
+      console.log(checked);
       const target = e.target.parentNode.parentNode;
       this.complete(target.id, checked);
       target.parentNode.classList.toggle("complete");

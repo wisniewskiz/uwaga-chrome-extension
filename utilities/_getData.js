@@ -10,7 +10,7 @@ export const getData = () => {
       name.textContent = data.name;
       const actionList = data.items;
       actionList.map((action) => {
-        actionItem.render(action.text, action.id, action.isCompleted, action.notes, action.isWebsite, action.url, action.favicon);
+        actionItem.render(action);
         updateProgress();
       });
     } else {

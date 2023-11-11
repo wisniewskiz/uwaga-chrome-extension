@@ -13,8 +13,8 @@ getData();
 let addItem = document.querySelector(".form__submit");
 addItem.addEventListener("submit", (e) => {
   e.preventDefault();
-  let newAction = new ActionItem();
- let text = addItem.elements.namedItem("taskname").value;
+  let text = addItem.elements.namedItem("taskname").value;
+  let newAction = new ActionItem(text);
   addItem.elements.namedItem("taskname").value = "";
   newAction.add(text);
   console.log(newAction);
