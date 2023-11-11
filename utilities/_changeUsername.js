@@ -12,7 +12,7 @@ export const changeUserName = () => {
         const name = document.getElementById('name');
         if(data) {
             name.textContent = username;
-            data._name = username;
+            data.name = username;
             const updatedData = JSON.stringify(data);
             localStorage.setItem("uwaga", updatedData);
             modal.close();

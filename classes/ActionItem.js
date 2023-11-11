@@ -43,11 +43,9 @@ export class ActionItem {
     }, 450);
   };
 
-  complete = (id) => {
-    console.log(id);
+  complete = (id) => {;
     const data = JSON.parse(localStorage.getItem("uwaga"));
     data.items = data.items.map((action) => {
-      console.log(action);
       if (action.id == id) {
         action.isCompleted = !action.isCompleted;
       }
@@ -71,7 +69,6 @@ export class ActionItem {
   };
 
   render = (actionItem) => {
-    console.log(actionItem.text);
     let taskContainer = document.querySelector(".tasks__container");
     let taskWrapper = document.createElement("div");
     taskWrapper.classList.add("task__wrapper");
@@ -171,7 +168,6 @@ export class ActionItem {
 
     titleCheck.addEventListener("click", (e) => {
       const checked = e.target.checked;
-      console.log(checked);
       const target = e.target.parentNode.parentNode;
       this.complete(target.id, checked);
       target.parentNode.classList.toggle("complete");
